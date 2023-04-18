@@ -46,6 +46,10 @@ export const getStaticProps: GetStaticProps = async ({ locale }: any) => {
     `,
   });
 
+  if (collectionsData.error) {
+    console.error(collectionsData.error);
+  }
+
   return {
     props: {
       collections: collectionsData.data.collections,

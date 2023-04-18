@@ -24,26 +24,26 @@ interface ProductCardProps {
 const ProductCard: NextPage<ProductCardProps> = (props) => {
   const { product } = props;
 
-  const [productTags, setProductTags] = useState<any[]>([]);
+  // const [productTags, setProductTags] = useState<any[]>([]);
 
   useEffect(() => {
-    async function fectchProductTags() {
-      const { data, loading, errors } = await client.query({
-        query: gql`
-          query {
-            productTags(id: ${product.index}) {
-              title
-              tags {
-                id
-                label
-              }
-            }
-          }
-        `,
-      });
-      setProductTags(data.productTags.tags);
-    }
-    fectchProductTags();
+    // async function fectchProductTags() {
+    //   const { data, loading, errors } = await client.query({
+    //     query: gql`
+    //       query {
+    //         productTags(id: ${product.index}) {
+    //           title
+    //           tags {
+    //             id
+    //             label
+    //           }
+    //         }
+    //       }
+    //     `,
+    //   });
+    //   setProductTags(data.productTags.tags);
+    // }
+    // fectchProductTags();
   }, [product]);
 
   return (
@@ -57,7 +57,7 @@ const ProductCard: NextPage<ProductCardProps> = (props) => {
       >
         <div>
           <Image
-            src={product.images.image1.large}
+            src={product.images.image1.src}
             alt=""
             width={300}
             height={250}
@@ -91,8 +91,8 @@ const ProductCard: NextPage<ProductCardProps> = (props) => {
           )}
         </div>
         <div id="tags">
-          {productTags.length > 0 &&
-            productTags.map((tag, index) => (
+          {product.tags.length > 0 &&
+            product.tags.map((tag, index) => (
               <span
                 key={index}
                 className="inline-flex items-center justify-center mx-2 px-2 py-1 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full"

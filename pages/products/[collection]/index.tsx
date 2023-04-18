@@ -102,6 +102,9 @@ export const getStaticProps: GetStaticProps = async ({
             collection{
              title
             }
+            tags{
+              label
+            }
            
            }
          }

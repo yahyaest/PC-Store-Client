@@ -1,0 +1,13 @@
+version: '3'
+services:
+  pc-store:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    container_name: pc-store
+    stdin_open: true
+    volumes:
+       - .:/app

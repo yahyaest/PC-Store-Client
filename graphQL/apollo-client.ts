@@ -3,7 +3,8 @@ import { setContext } from "@apollo/client/link/context";
 import Cookies from "js-cookie";
 
 const httpLink = createHttpLink({
-  uri: "http://127.0.0.1:8000/graphql",
+  // uri: "http://127.0.0.1:8000/graphql",   // normal config : server and client running seperately
+  uri: "http://pc-store-server:8000/graphql",   //docker networking : see docker-compose file
 });
 
 const authLink = setContext((_, { headers }) => {

@@ -36,8 +36,8 @@ const ProductPage: NextPage<ProductProps> = (props) => {
     let imagesGallery = [];
     for (let imageNumber of Object.keys(product.images)) {
       imagesGallery.push({
-        original: product.images[imageNumber].medium,
-        thumbnail: product.images[imageNumber].tiny,
+        original: product.images[imageNumber].src,
+        thumbnail: product.images[imageNumber].src,
       });
     }
     setImages(imagesGallery);
