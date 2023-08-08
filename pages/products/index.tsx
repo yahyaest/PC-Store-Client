@@ -3,7 +3,6 @@ import { GetStaticProps, NextPage } from "next";
 import Link from "next/link";
 import { gql } from "@apollo/client";
 import client from "../../graphQL/apollo-client";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 interface ProductsProps {
   products: any[];
@@ -33,7 +32,7 @@ const Products: NextPage<ProductsProps> = (props) => {
 
 export default Products;
 
-export const getStaticProps: GetStaticProps = async ({ locale }: any) => {
+export const getStaticProps: GetStaticProps = async () => {
   // Get all collections
   const collectionsData = await client.query({
     query: gql`
@@ -53,12 +52,6 @@ export const getStaticProps: GetStaticProps = async ({ locale }: any) => {
   return {
     props: {
       collections: collectionsData.data.collections,
-      ...(await serverSideTranslations(locale!, [
-        "common",
-        "forms",
-        "menu",
-        "footer",
-      ])),
     },
   };
 };

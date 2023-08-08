@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 import React from "react";
 import client from "../../../graphQL/apollo-client";
 import ProductCard from "../../../components/product/product-card";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 interface ProductCollectionPageProps {
   products: any[];
@@ -53,10 +52,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return { paths, fallback: false };
 };
 
-export const getStaticProps: GetStaticProps = async ({
-  params,
-  locale,
-}: any) => {
+export const getStaticProps: GetStaticProps = async ({ params }: any) => {
   // Get products count
 
   const { data, loading, errors } = await client.query({
@@ -132,12 +128,6 @@ export const getStaticProps: GetStaticProps = async ({
   return {
     props: {
       products,
-      ...(await serverSideTranslations(locale!, [
-        "common",
-        "forms",
-        "menu",
-        "footer",
-      ])),
     },
   };
 };

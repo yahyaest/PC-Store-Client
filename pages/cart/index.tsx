@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import { GetServerSideProps, NextPage } from "next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Link from "next/link";
 import Image from "next/image";
 import CartContext from "../../store/cart.context";
@@ -128,17 +127,8 @@ const CartPage: NextPage<CartPageProps> = (props) => {
 
 export default CartPage;
 
-export const getServerSideProps: GetServerSideProps = async ({
-  locale,
-}: any) => {
+export const getServerSideProps: GetServerSideProps = async () => {
   return {
-    props: {
-      ...(await serverSideTranslations(locale!, [
-        "common",
-        "forms",
-        "menu",
-        "footer",
-      ])),
-    },
+    props: {},
   };
 };

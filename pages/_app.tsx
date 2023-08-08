@@ -1,8 +1,6 @@
 import type { AppProps } from "next/app";
 import { Router } from "next/router";
-import { useEffect, useState } from "react";
 import NProgress from "nprogress";
-import { appWithTranslation } from "next-i18next";
 import Layout from "../components/layout/layout";
 import { ToastContainer } from "react-toastify";
 import { CartContextProvider } from "../store/cart.context";
@@ -73,4 +71,4 @@ function MyApp({ Component, pageProps }: AppProps) {
   //
 }
 
-export default appWithTranslation(MyApp);
+export default MyApp;

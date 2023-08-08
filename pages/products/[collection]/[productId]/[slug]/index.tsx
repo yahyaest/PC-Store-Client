@@ -4,7 +4,6 @@ import { gql } from "@apollo/client";
 import ImageGallery from "react-image-gallery";
 import client from "../../../../../graphQL/apollo-client";
 import { FaShoppingCart } from "react-icons/fa";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import cartContext from "../../../../../store/cart.context";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
@@ -53,7 +52,7 @@ const ProductPage: NextPage<ProductProps> = (props) => {
         toast.success("Item added to Cart successfully");
       } catch (err: any) {
         console.log(err);
-    //     toast.error(err.errors[0].message)
+        //     toast.error(err.errors[0].message)
       }
     } else {
       try {
@@ -243,10 +242,7 @@ export const getStaticPaths: GetStaticPaths = async ({ params }: any) => {
   return { paths, fallback: false };
 };
 
-export const getStaticProps: GetStaticProps = async ({
-  params,
-  locale,
-}: any) => {
+export const getStaticProps: GetStaticProps = async ({ params }: any) => {
   // Get  product
   const { data, loading, errors } = await client.query({
     query: gql`
@@ -276,12 +272,6 @@ export const getStaticProps: GetStaticProps = async ({
   return {
     props: {
       product,
-      ...(await serverSideTranslations(locale!, [
-        "common",
-        "forms",
-        "menu",
-        "footer",
-      ])),
     },
   };
 };
